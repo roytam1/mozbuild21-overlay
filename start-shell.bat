@@ -4,9 +4,9 @@ SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
 REM Reset some env vars and set some others.
 SET CYGWIN=
-SET INCLUDE=
-SET LIB=
 IF NOT DEFINED MOZ_NO_RESET_PATH (
+  SET INCLUDE=
+  SET LIB=
   SET PATH=%SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
 )
 
@@ -45,6 +45,8 @@ IF "%WIN64%" == "1" (
 SET PATH=%PATH%;%MOZ_TOOLS%\bin
 
 REM Set up the MSVC environment if called from one of the start-shell-msvc batch files.
+IF NOT DEFINED MOZ_NOAUTORUN (
+
 IF DEFINED MOZ_MSVCVERSION (
   IF NOT DEFINED VCDIR (
     REM Set the MSVC registry key.
@@ -121,6 +123,8 @@ IF DEFINED MOZ_MSVCVERSION (
     SET ERROR=Unable to call a suitable vcvars script. Exiting.
     GOTO _QUIT
   )
+)
+
 )
 
 cd "%USERPROFILE%"
