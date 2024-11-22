@@ -10,6 +10,9 @@ REM Switch CWD to the current location so that the call to start.shell-bat
 REM doesn't fail if invoked from a different location.
 pushd "%~dp0"
 
+REM clean-up PATH first
+SET PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0
+
 CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64 -vcvars_ver=14.16
 
 set LIB=%LIB%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\DIA SDK\lib\amd64
